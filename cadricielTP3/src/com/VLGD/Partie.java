@@ -5,6 +5,9 @@ package com.VLGD;
  */
 public class Partie
 {
+    /**
+     * Gère la partie en cours.
+     */
     public void jouerPartie()
     {
 

@@ -5,16 +5,17 @@ package com.VLGD;
  */
 public abstract class Fabrique
 {
-    public final void genererPartie()
+    Jeu manche;
+    public final void genererPartie(int nbJoueur)
     {
         genererJeu();
         genererDe();
-        genererJoueur();
+        genererJoueur(nbJoueur);
     }
 
     protected void genererJeu()
     {
-
+        manche = new Jeu();
     }
 
     protected void genererDe()
@@ -22,8 +23,11 @@ public abstract class Fabrique
 
     }
 
-    protected void genererJoueur()
+    protected void genererJoueur(int nbJoueur)
     {
-
+        if(nbJoueur < 2){
+            System.out.println("Le nombre de joueur minimum pour une partie de dé est de 2.");
+            nbJoueur = 2;
+        }
     }
 }

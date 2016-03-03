@@ -15,8 +15,8 @@ public class CollectionJoueur
         this.listeJoueur = listeJoueur;
     }
 
-    public void ajouterJoueur(){
-
+    public void ajouterJoueur(Joueur j){
+        listeJoueur.add(j);
     }
 
 

@@ -10,8 +10,8 @@ public class CollectionDes
 {
     private ArrayList<De> listeDe;
 
-    public void ajouterDe(){
-
+    public void ajouterDe(De d){
+        listeDe.add(d);
     }
 
     public void CollectionDe(ArrayList<De> des)

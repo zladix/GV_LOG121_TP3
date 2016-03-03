@@ -3,7 +3,7 @@ package com.VLGD;
 /**
  * Created by Utilisateur on 2016-02-18.
  */
-public class De implements Comparable
+public class De implements  Comparable<De>
 {
     private int face;
 
@@ -21,7 +21,7 @@ public class De implements Comparable
     }
 
     @Override
-    public int compareTo(Object o)
+    public int compareTo(De d)
     {
         return 0;
     }

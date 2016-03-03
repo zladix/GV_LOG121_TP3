@@ -34,4 +34,7 @@ public class DeIterateur  implements Iterator<De> {
         position++;
         return unDe;
     }
+
+    @Override
+    public void remove(){}
 }

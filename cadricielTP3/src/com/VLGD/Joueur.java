@@ -3,13 +3,13 @@ package com.VLGD;
 /**
  * Created by Utilisateur on 2016-02-18.
  */
-public class Joueur implements Comparable
+public class Joueur implements Comparable<Joueur>
 {
     private int scoreJoueur;
 
-    Joueur()
+    Joueur(int score)
     {
-        scoreJoueur = 0;
+        scoreJoueur = score;
     }
 
     public int getScoreJoueur()
@@ -23,8 +23,19 @@ public class Joueur implements Comparable
     }
 
     @Override
-    public int compareTo(Object o)
+    public int compareTo(Joueur j)
     {
-        return 0;
+        if(j.getScoreJoueur() > this.scoreJoueur)
+        {
+            return 1;
+        }
+        else if(j.getScoreJoueur() < this.scoreJoueur)
+        {
+            return -1;
+        }
+        else
+        {
+            return 0;
+        }
     }
 }

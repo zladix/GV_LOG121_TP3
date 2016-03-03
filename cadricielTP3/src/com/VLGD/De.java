@@ -7,9 +7,8 @@ public class De implements  Comparable<De>
 {
     private int face;
 
-    De(int face)
+    De()
     {
-        this.face = face;
     }
 
     public int getFace(){
@@ -23,6 +22,12 @@ public class De implements  Comparable<De>
     @Override
     public int compareTo(De d)
     {
-        return 0;
+        if(d.getFace() > this.face){
+            return 1;
+        }
+        else if(d.getFace() < this.face) {
+            return -1;
+        }
+        else return 0;
     }
 }

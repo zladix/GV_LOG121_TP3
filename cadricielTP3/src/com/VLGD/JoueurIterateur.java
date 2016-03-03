@@ -34,4 +34,8 @@ public class JoueurIterateur implements Iterator<Joueur> {
         position++;
         return unJoueur;
     }
+
+    @Override
+    public void remove(){
+    }
 }

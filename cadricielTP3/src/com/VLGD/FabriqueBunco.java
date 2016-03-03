@@ -20,7 +20,7 @@ public class FabriqueBunco extends Fabrique
         super.genererDe();
         // 3 Dé de 6 faces;
         //utiliser le set dans jeu pour générer le nombre de dés nécessaire
-        manche.setNbDes(3,6);
+        manche.setDes(3,6);
     }
 
     @Override

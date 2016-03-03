@@ -10,9 +10,8 @@ public class CollectionDes
 {
     private ArrayList<De> listeDe;
 
-    public void ajouterDe(De d){
+    public void ajouterDe(){
 
-        listeDe.add(d);
     }
 
     public void CollectionDe(ArrayList<De> des)
@@ -29,7 +28,7 @@ public class CollectionDes
         return listeDe.get(index);
     }
 
-    public Iterator<De> iterator(){
+    public Iterator<De> crerIterateur(){
         return new DeIterateur(this);
     }
 

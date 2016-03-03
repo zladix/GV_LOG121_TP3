@@ -15,9 +15,8 @@ public class CollectionJoueur
         this.listeJoueur = listeJoueur;
     }
 
-    public void ajouterJoueur(Joueur j){
+    public void ajouterJoueur(){
 
-        listeJoueur.add(j);
     }
 
 
@@ -30,7 +29,7 @@ public class CollectionJoueur
         return listeJoueur.get(index);
     }
 
-    public Iterator<Joueur> iterator(){
+    public Iterator<Joueur> creerIterateur(){
         return new JoueurIterateur(this);
     }
 }

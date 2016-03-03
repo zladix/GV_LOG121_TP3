@@ -8,12 +8,11 @@ import java.util.Iterator;
 public class JoueurIterateur implements Iterator<Joueur> {
 
     private CollectionJoueur cJoueur;
-    int position = 0;
+    public int position = 0;
 
     public JoueurIterateur(CollectionJoueur cJoueur)
     {
         this.cJoueur = cJoueur;
-
     }
 
     @Override

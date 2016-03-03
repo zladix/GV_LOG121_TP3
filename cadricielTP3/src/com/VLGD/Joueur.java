@@ -5,10 +5,12 @@ package com.VLGD;
  */
 public class Joueur implements Comparable<Joueur>
 {
+    private int numeroJoueur;
     private int scoreJoueur;
 
-    Joueur(int score)
+    Joueur(int numJoueur,int score)
     {
+        numeroJoueur = numJoueur;
         scoreJoueur = score;
     }
 
@@ -17,9 +19,11 @@ public class Joueur implements Comparable<Joueur>
         return scoreJoueur;
     }
 
+    public int getNumeroJoueur(){return numeroJoueur;}
+
     public void setScoreJoueur(int score)
     {
-        scoreJoueur = score;
+        scoreJoueur = scoreJoueur + score;
     }
 
     @Override

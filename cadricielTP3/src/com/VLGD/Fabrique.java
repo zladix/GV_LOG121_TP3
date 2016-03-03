@@ -18,16 +18,10 @@ public abstract class Fabrique
         manche = new Jeu();
     }
 
-    protected void genererDe()
-    {
-
+    protected void genererDe() {
     }
 
     protected void genererJoueur(int nbJoueur)
     {
-        if(nbJoueur < 2){
-            System.out.println("Le nombre de joueur minimum pour une partie de dé est de 2.");
-            nbJoueur = 2;
-        }
     }
 }

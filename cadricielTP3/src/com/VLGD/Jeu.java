@@ -9,6 +9,7 @@ public class Jeu
 {
     final int MIN_FACE = 1;
     int nbFaces = 1;
+    int scoreTourJoueur = 0;
     private int nbTour;
     private int nbTourPartieMax;
 
@@ -18,8 +19,7 @@ public class Jeu
     Iterator<De> itDe;
     Iterator<Joueur> itJoueur;
 
-    Jeu()
-    {
+    Jeu() {
     }
 
     public int getNbTour()
@@ -69,7 +69,7 @@ public class Jeu
     {
         for(int i = 1; i<= nbJoueur;i++)
         {
-            collectionJoueur.ajouterJoueur(new Joueur(scoreBase));
+            collectionJoueur.ajouterJoueur(new Joueur(i,scoreBase));
         }
        itJoueur =  collectionJoueur.creerIterateur();
     }
@@ -78,16 +78,37 @@ public class Jeu
      * Valide le pointage du joueur pour ce tour(ou cette partie de tour si il ne respecte pas les conditions de changement de tour.
      * Retourne le gagnant si le nombre de tour maximum du jeu a été atteint.
      */
-    public void validerTour()
+    public int jouer()
     {
+        boolean tourSuivant = false;
         if(nbTour == nbTourPartieMax+1){
             //Calculer le vainqueur.
         }
         else{
-            //Calculer le pointage du joueur selon la stratégie.
-                //Si le joueur a fini son tour , on passe la main.
-                    //Si le dernier joueur a fini son tour , tour +1 et on recrée l'itérateur.
+            genererDe();
+            //Fonction de Des Statégie
+            if(tourSuivant == false) {
+                //si le joueur n'a pas fini son tour
+                // scoreTourJoueur = scoreTourJoueur + //Ce que je recois
+                jouer();
+            }
+            else {
+                //sinon le joueur a fini son tour , on passe la main.
+                if (itJoueur.hasNext()) {
+                    itJoueur.next().setScoreJoueur(scoreTourJoueur);
+                    scoreTourJoueur = 0;
+                    jouer();
+                } else {
+                    //fin de tour
+                    itJoueur.next().setScoreJoueur(scoreTourJoueur);
+                    scoreTourJoueur = 0;
+                    nbTour = nbTour + 1;
+                    itJoueur = collectionJoueur.creerIterateur();
+                    jouer();
+                }
+            }
         }
+        return 0;
     }
 
     /**

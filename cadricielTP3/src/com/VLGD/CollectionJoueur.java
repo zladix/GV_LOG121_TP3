@@ -8,7 +8,7 @@ import java.util.Iterator;
  */
 public class CollectionJoueur
 {
-    ArrayList<Joueur> listeJoueur;
+    ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
 
     public CollectionJoueur(ArrayList<Joueur> listeJoueur)
     {

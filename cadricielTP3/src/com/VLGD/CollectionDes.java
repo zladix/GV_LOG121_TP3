@@ -8,7 +8,7 @@ import java.util.Iterator;
  */
 public class CollectionDes
 {
-    private ArrayList<De> listeDe;
+    private ArrayList<De> listeDe = new ArrayList<De>();
 
     public void ajouterDe(De d){
         listeDe.add(d);
@@ -28,7 +28,7 @@ public class CollectionDes
         return listeDe.get(index);
     }
 
-    public Iterator<De> crerIterateur(){
+    public Iterator<De> creerIterateur(){
         return new DeIterateur(this);
     }
 

@@ -9,11 +9,11 @@ public interface IStrategie
      * Calcule le score du joueur
      * @return le score du joueur.
      */
-    int calculerScoreTour();   //Il faut ajouter la liste de dés en paramètre ou y accéder d'une quelquonque manière.
+    int calculerScoreTour(Jeu j);   //Il faut ajouter la liste de dés en paramètre ou y accéder d'une quelquonque manière.
 
     /**
      * Définir le vainqueur de la partie selon les règles inscrites.
      * @return le numéro du joueur ayant gagné la partie.
      */
-    int calculerLeVainqueur(); //Il faut accéder a la liste de joueur pour avoir leur score.
+    int calculerLeVainqueur(Jeu j); //Il faut accéder a la liste de joueur pour avoir leur score.
 }

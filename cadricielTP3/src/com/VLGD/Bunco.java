@@ -1,26 +1,67 @@
 package com.VLGD;
 
+import java.util.Iterator;
+
 /**
  * Created by Utilisateur on 2016-02-18.
  */
 public class Bunco implements IStrategie{
+
+
     @Override
-    public int calculerScoreTour() {
-    //Règle
-        //3 dés si les 3 dés ont le même chiffre que le chiffre du tour , +21 points
-                    //Passe le tour.
-                //Sinon , +1 point ou +2 point selon le nombre de dés ayant le même chiffre que le tour.
-                    //continue le tour.
-                //Sinon , on vérifie si les 3 dés ont la même face mais qui est différent de celui du tour, si c'est le cas + 5 points
-                    //continue le tour
-                //Sinon + 0 points
-                    //Passe le tour.
-        return 0;
+    public int calculerScoreTour(Jeu j) {
+
+        int score = 0;
+        int position = 0;
+
+        j.collectionDes.TrierCollection();
+
+        Iterator<De> it =  j.collectionDes.creerIterateur();
+
+        //boucle qui calcule le nombre de dés ayant la même face que le tour
+        while(it.hasNext())
+        {
+            if(j.collectionDes.get(position).getFace() == j.getNbTour())
+            {
+               score++;
+            }
+
+            position = position + 1;
+            it.next();
+        }
+
+        //si les 3 dées sont pareil(doit être trié en ordre croissant)
+        if(j.collectionDes.get(1).getFace() == j.collectionDes.get(3).getFace())
+        {
+            //si le score est de 3 ça veut dire que c'est un bonco à cause du point gagné par dé pareil au tour
+            if(score == 3)
+            {
+                score = 21;
+            }
+            //sinon c'est 3 dés différents du tour donc 3 points
+            else
+            {
+                score = 5;
+            }
+        }
+
+        //si le joueur a eu un bonco ou 0 points, son tour est fini.
+        if(score == 21 || score == 0){
+            j.finTour = true;
+        }
+        else{
+            j.finTour = false;
+        }
+
+        return score;
     }
 
     @Override
-    public int calculerLeVainqueur()
+    public int calculerLeVainqueur(Jeu j)
     {
+
+        j.collectionDes.TrierCollection();
+
         //Compare le score de chaque joueur , retourne le numéro du joueur ayant le plus haut score.
             //Probablement avec le compareTo présent dans joueur.
         return 1;

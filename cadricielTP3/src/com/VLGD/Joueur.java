@@ -29,12 +29,13 @@ public class Joueur implements Comparable<Joueur>
 
     @Override
     public int compareTo(Joueur j)
+
     {
-        if(j.getScoreJoueur() > this.scoreJoueur)
+        if(j.getScoreJoueur() < this.scoreJoueur)
         {
             return 1;
         }
-        else if(j.getScoreJoueur() < this.scoreJoueur)
+        else if(j.getScoreJoueur() > this.scoreJoueur)
         {
             return -1;
         }

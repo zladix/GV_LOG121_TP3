@@ -18,6 +18,8 @@ public class Bunco implements IStrategie{
 
         Iterator<De> it =  j.collectionDes.creerIterateur();
 
+        System.out.println(j.collectionDes.get(0).getFace() + " " + j.collectionDes.get(1).getFace() + " " +j.collectionDes.get(2).getFace());
+
         //boucle qui calcule le nombre de dés ayant la même face que le tour
         while(it.hasNext())
         {
@@ -27,6 +29,7 @@ public class Bunco implements IStrategie{
             }
 
             position = position + 1;
+
             it.next();
         }
 
@@ -59,6 +62,9 @@ public class Bunco implements IStrategie{
     @Override
     public void calculerLeVainqueur(Jeu j)
     {
+
         j.collectionJoueur.TrierCollection();
+        System.out.println(j.collectionJoueur.get(0).getScoreJoueur() + " " + j.collectionJoueur.get(1).getScoreJoueur() + " " +j.collectionJoueur.get(2).getScoreJoueur() + " " + j.collectionJoueur.get(3).getScoreJoueur());
+
     }
 }

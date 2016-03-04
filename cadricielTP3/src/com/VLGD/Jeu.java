@@ -93,18 +93,10 @@ public class Jeu
     public int jouerTour()
     {
         int scoreTemp  = 0;
-        if(nbTour == nbTourPartieMax+1){
-            strategie.calculerLeVainqueur(this);
-            //La liste est trié , le vainqueur pourra être récupéré avec getVainqueur.
-            return 3;
-        }
-        else{
             genererDe();
             scoreTemp = strategie.calculerScoreTour(this);
             scoreTourJoueur = scoreTourJoueur + scoreTemp;
             if(finTour == false) {
-                //si le joueur n'a pas fini son tour
-                System.out.println("Score avant generation de de suivante dans le même tour: "+scoreTemp+" \n");
                 return 0;
             }
             else {
@@ -113,18 +105,25 @@ public class Jeu
                     itJoueur.next().setScoreJoueur(scoreTourJoueur);
                     joueurActuel = joueurActuel +1;
                     scoreTourJoueur = 0;
+
                     return 1;
                 } else {
                     //fin de tour
-                    //itJoueur.next().setScoreJoueur(scoreTourJoueur);
+                    itJoueur.next().setScoreJoueur(scoreTourJoueur);
                     scoreTourJoueur = 0;
                     nbTour = nbTour + 1;
                     joueurActuel = 1;
                     itJoueur = collectionJoueur.creerIterateur();
-                    return 2;
+                    if(nbTour == nbTourPartieMax+1){
+                        strategie.calculerLeVainqueur(this);
+                        //La liste est trié , le vainqueur pourra être récupéré avec getVainqueur.
+                        return 3;
+                    }
+                    else {
+                        return 2;
+                    }
                 }
             }
-        }
     }
 
     /**
@@ -175,9 +174,9 @@ public class Jeu
         {
             itJoueur = collectionJoueur.creerIterateur();
             while(itJoueur.hasNext()){
-                nbjoueurTest++;
                 scoreGagnant = itJoueur.next().getScoreJoueur();
-                System.out.println("GetScoreVainqueur: Joueur : "+nbjoueurTest+ " score : "+scoreGagnant+"\n");
+                System.out.println("GetScoreVainqueur: Joueur : "+ collectionJoueur.get(nbjoueurTest).getNumeroJoueur()+ " score : "+scoreGagnant+"\n");
+                nbjoueurTest++;
             }
             return scoreGagnant;
         }

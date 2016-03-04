@@ -11,6 +11,8 @@ public class CollectionDes
 {
     private ArrayList<De> listeDe = new ArrayList<De>();
 
+    CollectionDes(){}
+
     public void ajouterDe(De d){
         listeDe.add(d);
     }

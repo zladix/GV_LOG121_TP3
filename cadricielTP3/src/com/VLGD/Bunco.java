@@ -31,7 +31,7 @@ public class Bunco implements IStrategie{
         }
 
         //si les 3 dées sont pareil(doit être trié en ordre croissant)
-        if(j.collectionDes.get(1).getFace() == j.collectionDes.get(3).getFace())
+        if(j.collectionDes.get(0).getFace() == j.collectionDes.get(2).getFace())
         {
             //si le score est de 3 ça veut dire que c'est un bonco à cause du point gagné par dé pareil au tour
             if(score == 3)

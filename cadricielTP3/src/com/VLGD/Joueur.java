@@ -24,6 +24,7 @@ public class Joueur implements Comparable<Joueur>
     public void setScoreJoueur(int score)
     {
         scoreJoueur = scoreJoueur + score;
+        System.out.println("score joueur "+numeroJoueur+" : "+ scoreJoueur+"\n");
     }
 
     @Override

@@ -11,6 +11,8 @@ public class CollectionJoueur
 {
     ArrayList<Joueur> listeJoueur = new ArrayList<Joueur>();
 
+    CollectionJoueur(){}
+
     public CollectionJoueur(ArrayList<Joueur> listeJoueur)
     {
         this.listeJoueur = listeJoueur;

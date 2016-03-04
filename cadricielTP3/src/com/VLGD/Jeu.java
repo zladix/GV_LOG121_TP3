@@ -56,6 +56,7 @@ public class Jeu
      */
     public void setDes(int nbDes,int nbFaces){
         this.nbFaces = nbFaces;
+        collectionDes = new CollectionDes();
 
         //génère la liste contenant les dés
         for (int i = 1 ; i <= nbDes;i++)
@@ -72,6 +73,7 @@ public class Jeu
      */
     public void setNbJoueur(int nbJoueur,int scoreBase)
     {
+        collectionJoueur = new CollectionJoueur();
         for(int i = 1; i<= nbJoueur;i++)
         {
             collectionJoueur.ajouterJoueur(new Joueur(i,scoreBase));
@@ -102,6 +104,7 @@ public class Jeu
             scoreTourJoueur = scoreTourJoueur + scoreTemp;
             if(finTour == false) {
                 //si le joueur n'a pas fini son tour
+                System.out.println("Score avant generation de de suivante dans le même tour: "+scoreTemp+" \n");
                 return 0;
             }
             else {
@@ -113,7 +116,7 @@ public class Jeu
                     return 1;
                 } else {
                     //fin de tour
-                    itJoueur.next().setScoreJoueur(scoreTourJoueur);
+                    //itJoueur.next().setScoreJoueur(scoreTourJoueur);
                     scoreTourJoueur = 0;
                     nbTour = nbTour + 1;
                     joueurActuel = 1;
@@ -150,8 +153,10 @@ public class Jeu
             itJoueur = collectionJoueur.creerIterateur();
             while(itJoueur.hasNext()){
                 joueurGagnant = itJoueur.next().getNumeroJoueur();
+                System.out.println("GetVainqueur: Joueur : "+joueurGagnant+"\n");
             }
             return joueurGagnant;
+
         }
         else
         {
@@ -165,11 +170,14 @@ public class Jeu
      */
     public int getScoreVainqueur(){
         int scoreGagnant = 0;
+        int nbjoueurTest = 0;
         if(nbTour == nbTourPartieMax+1)
         {
             itJoueur = collectionJoueur.creerIterateur();
             while(itJoueur.hasNext()){
+                nbjoueurTest++;
                 scoreGagnant = itJoueur.next().getScoreJoueur();
+                System.out.println("GetScoreVainqueur: Joueur : "+nbjoueurTest+ " score : "+scoreGagnant+"\n");
             }
             return scoreGagnant;
         }

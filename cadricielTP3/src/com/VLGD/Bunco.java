@@ -57,13 +57,8 @@ public class Bunco implements IStrategie{
     }
 
     @Override
-    public int calculerLeVainqueur(Jeu j)
+    public void calculerLeVainqueur(Jeu j)
     {
-
-        j.collectionDes.TrierCollection();
-
-        //Compare le score de chaque joueur , retourne le numéro du joueur ayant le plus haut score.
-            //Probablement avec le compareTo présent dans joueur.
-        return 1;
+        j.collectionJoueur.TrierCollection();
     }
 }

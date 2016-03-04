@@ -1,5 +1,6 @@
 package com.VLGD;
 
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -19,7 +20,6 @@ public class CollectionJoueur
         listeJoueur.add(j);
     }
 
-
     public int getLength()
     {
         return listeJoueur.size();
@@ -32,4 +32,6 @@ public class CollectionJoueur
     public Iterator<Joueur> creerIterateur(){
         return new JoueurIterateur(this);
     }
+
+    public void TrierCollection(){Collections.sort(listeJoueur);}
 }

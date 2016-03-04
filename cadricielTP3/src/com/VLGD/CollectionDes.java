@@ -1,5 +1,6 @@
 package com.VLGD;
 
+import java.util.Collections;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -31,5 +32,7 @@ public class CollectionDes
     public Iterator<De> creerIterateur(){
         return new DeIterateur(this);
     }
+
+    public void TrierCollection(){Collections.sort(listeDe);}
 
 }

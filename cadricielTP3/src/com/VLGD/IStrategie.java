@@ -13,7 +13,6 @@ public interface IStrategie
 
     /**
      * Définir le vainqueur de la partie selon les règles inscrites.
-     * @return le numéro du joueur ayant gagné la partie.
      */
-    int calculerLeVainqueur(Jeu j); //Il faut accéder a la liste de joueur pour avoir leur score.
+    void calculerLeVainqueur(Jeu j); //Il faut accéder a la liste de joueur pour avoir leur score.
 }

@@ -10,16 +10,21 @@ public class Jeu
     final int MIN_FACE = 1;
     int nbFaces = 1;
     int scoreTourJoueur = 0;
+    int joueurActuel = 1;
     private int nbTour;
     private int nbTourPartieMax;
+    boolean finTour = false;
 
     CollectionDes collectionDes;
     CollectionJoueur collectionJoueur;
 
     Iterator<De> itDe;
     Iterator<Joueur> itJoueur;
+    private IStrategie strategie;
 
-    Jeu() {
+    Jeu(){}
+    public Jeu(IStrategie strategie){
+        this.strategie = strategie;
     }
 
     public int getNbTour()
@@ -77,38 +82,46 @@ public class Jeu
     /**
      * Valide le pointage du joueur pour ce tour(ou cette partie de tour si il ne respecte pas les conditions de changement de tour.
      * Retourne le gagnant si le nombre de tour maximum du jeu a été atteint.
+     * Le int recu en return représente quelque chose selon le chiffre recu
+     * return 0: le tour n'est pas terminé le joueur peut relancer les dés.
+     * return 1: le tour du joueur est terminé , passe au prochain joueur.
+     * return 2: tout les joueurs ont joué leur tour , passage au tour suivant.
+     * return 3: la partie est terminé.
      */
-    public int jouer()
+    public int jouerTour()
     {
-        boolean tourSuivant = false;
+        int scoreTemp  = 0;
         if(nbTour == nbTourPartieMax+1){
-            //Calculer le vainqueur.
+            strategie.calculerLeVainqueur(this);
+            //La liste est trié , le vainqueur pourra être récupéré avec getVainqueur.
+            return 3;
         }
         else{
             genererDe();
-            //Fonction de Des Statégie
-            if(tourSuivant == false) {
+            scoreTemp = strategie.calculerScoreTour(this);
+            scoreTourJoueur = scoreTourJoueur + scoreTemp;
+            if(finTour == false) {
                 //si le joueur n'a pas fini son tour
-                // scoreTourJoueur = scoreTourJoueur + //Ce que je recois
-                jouer();
+                return 0;
             }
             else {
                 //sinon le joueur a fini son tour , on passe la main.
-                if (itJoueur.hasNext()) {
+                if (itJoueur.hasNext()){
                     itJoueur.next().setScoreJoueur(scoreTourJoueur);
+                    joueurActuel = joueurActuel +1;
                     scoreTourJoueur = 0;
-                    jouer();
+                    return 1;
                 } else {
                     //fin de tour
                     itJoueur.next().setScoreJoueur(scoreTourJoueur);
                     scoreTourJoueur = 0;
                     nbTour = nbTour + 1;
+                    joueurActuel = 1;
                     itJoueur = collectionJoueur.creerIterateur();
-                    jouer();
+                    return 2;
                 }
             }
         }
-        return 0;
     }
 
     /**
@@ -124,5 +137,49 @@ public class Jeu
             random = valeur.nextInt((nbFaces-MIN_FACE)+1)+MIN_FACE;
             itDe.next().setFace(random);
         }
+    }
+
+    /**
+     * @return: numéro du joueur vainqueur.
+     * Return -1: La partie n'est pas terminée , donc pas de gagnant.
+     */
+    public int getVainqueur(){
+        int joueurGagnant = 0;
+        if(nbTour == nbTourPartieMax+1)
+        {
+            itJoueur = collectionJoueur.creerIterateur();
+            while(itJoueur.hasNext()){
+                joueurGagnant = itJoueur.next().getNumeroJoueur();
+            }
+            return joueurGagnant;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    /**
+     * @return : score du vainqueur
+     * Return -1: La partie n'est pas terminée , donc pas de score gagnant.
+     */
+    public int getScoreVainqueur(){
+        int scoreGagnant = 0;
+        if(nbTour == nbTourPartieMax+1)
+        {
+            itJoueur = collectionJoueur.creerIterateur();
+            while(itJoueur.hasNext()){
+                scoreGagnant = itJoueur.next().getScoreJoueur();
+            }
+            return scoreGagnant;
+        }
+        else
+        {
+            return -1;
+        }
+    }
+
+    public int getNumeroJoueurActuel(){
+        return joueurActuel;
     }
 }

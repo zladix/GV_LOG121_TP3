@@ -1,4 +1,8 @@
-package com.VLGD;
+package Bunco;
+import Bunco.FabriqueBunco;
+import Framework.Des.Fabrique;
+import Framework.Des.Jeu;
+
 import java.util.Scanner;
 
 /**
@@ -33,7 +37,7 @@ public class Partie
             switch (tour)
             {
                 case 0:System.out.println("Le joueur "+Partie.getNumeroJoueurActuel()+" n'a pas terminé son tour, il doit relancé les dés\n");break;
-                case 1: System.out.println("Le joueur "+(Partie.getNumeroJoueurActuel()-1)+" a terminé son tour.\n"); break;
+                case 1: System.out.println("Le joueur "+(Partie.getNumeroJoueurActuel()-1)+" a terminé son tour avec un score total de : "+Partie.getScoreJoueurActuel(Partie.getNumeroJoueurActuel()-2)+"\n");break;
                 case 2: System.out.println("Le tour a été complété par tout les joueurs, tour suivant!\n"); break;
                 case 3: validation = false; break;
             }

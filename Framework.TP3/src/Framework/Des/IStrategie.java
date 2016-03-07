@@ -1,4 +1,4 @@
-package com.VLGD;
+package Framework.Des;
 
 /**
  * Created by Utilisateur on 2016-02-18.

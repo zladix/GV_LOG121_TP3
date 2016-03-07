@@ -1,4 +1,4 @@
-package com.VLGD;
+package Framework.Des;
 import java.util.Random;
 import java.util.Iterator;
 
@@ -7,16 +7,16 @@ import java.util.Iterator;
  */
 public class Jeu
 {
-    final int MIN_FACE = 1;
-    int nbFaces = 1;
-    int scoreTourJoueur = 0;
-    int joueurActuel = 1;
+    private final int MIN_FACE = 1;
+    private int nbFaces = 1;
+    private int scoreTourJoueur = 0;
+    private int joueurActuel = 1;
     private int nbTour;
     private int nbTourPartieMax;
-    boolean finTour = false;
+    private boolean finTour = false;
 
-    CollectionDes collectionDes;
-    CollectionJoueur collectionJoueur;
+    private CollectionDes collectionDes;
+    private CollectionJoueur collectionJoueur;
 
     Iterator<De> itDe;
     Iterator<Joueur> itJoueur;
@@ -82,66 +82,6 @@ public class Jeu
     }
 
     /**
-     * Valide le pointage du joueur pour ce tour(ou cette partie de tour si il ne respecte pas les conditions de changement de tour.
-     * Retourne le gagnant si le nombre de tour maximum du jeu a été atteint.
-     * Le int recu en return représente quelque chose selon le chiffre recu
-     * return 0: le tour n'est pas terminé le joueur peut relancer les dés.
-     * return 1: le tour du joueur est terminé , passe au prochain joueur.
-     * return 2: tout les joueurs ont joué leur tour , passage au tour suivant.
-     * return 3: la partie est terminé.
-     */
-    public int jouerTour()
-    {
-        int scoreTemp  = 0;
-            genererDe();
-            scoreTemp = strategie.calculerScoreTour(this);
-            scoreTourJoueur = scoreTourJoueur + scoreTemp;
-            if(finTour == false) {
-                return 0;
-            }
-            else {
-                //sinon le joueur a fini son tour , on passe la main.
-                if (itJoueur.hasNext()){
-                    itJoueur.next().setScoreJoueur(scoreTourJoueur);
-                    joueurActuel = joueurActuel +1;
-                    scoreTourJoueur = 0;
-
-                    return 1;
-                } else {
-                    //fin de tour
-                    itJoueur.next().setScoreJoueur(scoreTourJoueur);
-                    scoreTourJoueur = 0;
-                    nbTour = nbTour + 1;
-                    joueurActuel = 1;
-                    itJoueur = collectionJoueur.creerIterateur();
-                    if(nbTour == nbTourPartieMax+1){
-                        strategie.calculerLeVainqueur(this);
-                        //La liste est trié , le vainqueur pourra être récupéré avec getVainqueur.
-                        return 3;
-                    }
-                    else {
-                        return 2;
-                    }
-                }
-            }
-    }
-
-    /**
-     * Génère des faces aléatoires pour les dés.
-     */
-    public void genererDe()
-    {
-        Random valeur = new Random();
-        int random = 0;
-        itDe = collectionDes.creerIterateur();
-        while(itDe.hasNext())
-        {
-            random = valeur.nextInt((nbFaces-MIN_FACE)+1)+MIN_FACE;
-            itDe.next().setFace(random);
-        }
-    }
-
-    /**
      * @return: numéro du joueur vainqueur.
      * Return -1: La partie n'est pas terminée , donc pas de gagnant.
      */
@@ -174,9 +114,9 @@ public class Jeu
         {
             itJoueur = collectionJoueur.creerIterateur();
             while(itJoueur.hasNext()){
-                scoreGagnant = itJoueur.next().getScoreJoueur();
-                System.out.println("GetScoreVainqueur: Joueur : "+ collectionJoueur.get(nbjoueurTest).getNumeroJoueur()+ " score : "+scoreGagnant+"\n");
                 nbjoueurTest++;
+                scoreGagnant = itJoueur.next().getScoreJoueur();
+                System.out.println("GetScoreVainqueur: Joueur : "+nbjoueurTest+ " score : "+scoreGagnant+"\n");
             }
             return scoreGagnant;
         }
@@ -188,5 +128,85 @@ public class Jeu
 
     public int getNumeroJoueurActuel(){
         return joueurActuel;
+    }
+
+    public CollectionDes getCollectionDes()
+    {
+        return collectionDes;
+    }
+
+    public CollectionJoueur getCollectionJoueur()
+    {
+        return collectionJoueur;
+    }
+
+    public void setFinTour(boolean finTour)
+    {
+        this.finTour = finTour;
+    }
+
+    public int getScoreJoueurActuel(int joueur) {
+        return collectionJoueur.get(joueur).getScoreJoueur();
+    }
+
+    /**
+     * Valide le pointage du joueur pour ce tour(ou cette partie de tour si il ne respecte pas les conditions de changement de tour.
+     * Retourne le gagnant si le nombre de tour maximum du jeu a été atteint.
+     * Le int recu en return représente quelque chose selon le chiffre recu
+     * return 0: le tour n'est pas terminé le joueur peut relancer les dés.
+     * return 1: le tour du joueur est terminé , passe au prochain joueur.
+     * return 2: tout les joueurs ont joué leur tour , passage au tour suivant.
+     * return 3: la partie est terminé.
+     */
+    public int jouerTour()
+    {
+        int scoreTemp  = 0;
+        if(nbTour == nbTourPartieMax+1){
+            strategie.calculerLeVainqueur(this);
+            //La liste est trié , le vainqueur pourra être récupéré avec getVainqueur.
+            return 3;
+        }
+        else{
+            genererDe();
+            scoreTemp = strategie.calculerScoreTour(this);
+            scoreTourJoueur = scoreTourJoueur + scoreTemp;
+            if(finTour == false) {
+                //si le joueur n'a pas fini son tour
+                System.out.println("Score avant generation de de suivante dans le même tour: "+scoreTemp+" \n");
+                return 0;
+            }
+            else {
+                //sinon le joueur a fini son tour , on passe la main.
+                if (itJoueur.hasNext()){
+                    itJoueur.next().setScoreJoueur(scoreTourJoueur);
+                    joueurActuel = joueurActuel +1;
+                    scoreTourJoueur = 0;
+                    return 1;
+                } else {
+                    //fin de tour
+                    //itJoueur.next().setScoreJoueur(scoreTourJoueur);
+                    scoreTourJoueur = 0;
+                    nbTour = nbTour + 1;
+                    joueurActuel = 1;
+                    itJoueur = collectionJoueur.creerIterateur();
+                    return 2;
+                }
+            }
+        }
+    }
+
+    /**
+     * Génère des faces aléatoires pour les dés.
+     */
+    public void genererDe()
+    {
+        Random valeur = new Random();
+        int random = 0;
+        itDe = collectionDes.creerIterateur();
+        while(itDe.hasNext())
+        {
+            random = valeur.nextInt((nbFaces-MIN_FACE)+1)+MIN_FACE;
+            itDe.next().setFace(random);
+        }
     }
 }

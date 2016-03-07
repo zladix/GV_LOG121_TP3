@@ -1,4 +1,8 @@
-package com.VLGD;
+package Bunco;
+
+import Bunco.Bunco;
+import Framework.Des.Fabrique;
+import Framework.Des.Jeu;
 
 /**
  * Created by Utilisateur on 2016-02-18.

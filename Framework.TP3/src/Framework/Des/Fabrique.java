@@ -1,12 +1,12 @@
-package com.VLGD;
+package Framework.Des;
 
 /**
  * Created by Utilisateur on 2016-02-18.
  */
 public abstract class Fabrique
 {
-    Jeu manche;
-    int nbJoueur = 0;
+    protected Jeu manche;
+    protected int nbJoueur = 0;
     public Fabrique(int nbJoueur){
         this.nbJoueur = nbJoueur;
         genererPartie();

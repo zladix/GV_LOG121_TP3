@@ -1,4 +1,4 @@
-package com.VLGD;
+package Framework.Des;
 
 /**
  * Created by Utilisateur on 2016-02-18.
@@ -29,13 +29,12 @@ public class Joueur implements Comparable<Joueur>
 
     @Override
     public int compareTo(Joueur j)
-
     {
-        if(j.getScoreJoueur() < this.scoreJoueur)
+        if(j.getScoreJoueur() > this.scoreJoueur)
         {
             return 1;
         }
-        else if(j.getScoreJoueur() > this.scoreJoueur)
+        else if(j.getScoreJoueur() < this.scoreJoueur)
         {
             return -1;
         }

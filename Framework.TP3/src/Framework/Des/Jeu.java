@@ -22,15 +22,23 @@ public class Jeu
     Iterator<Joueur> itJoueur;
     private IStrategie strategie;
 
-    Jeu(){}
+
+    /**
+     * Constructeur du jeu
+     * @param strategie type de jeux de dÈ ‡ jouer
+     */
     public Jeu(IStrategie strategie){
         this.strategie = strategie;
     }
 
+    /**
+     * @return le nombre de tour
+     */
     public int getNbTour()
     {
         return nbTour;
     }
+    
 
     /**
      * Initialise la valeur du tour actuel pour le jeu.
@@ -51,8 +59,8 @@ public class Jeu
 
     /**
      * G√©n√®re la liste de d√©s pour le jeu.
-     * @param nbDes : nombre de d√©s n√©cessaire.
-     * @param nbFaces : nombre de face pour les d√©s.
+     * @param nbDes : nombre de dÈs nÈcessaire.
+     * @param nbFaces : nombre de face pour les dÈs.
      */
     public void setDes(int nbDes,int nbFaces){
         this.nbFaces = nbFaces;
@@ -126,6 +134,7 @@ public class Jeu
         }
     }
 
+
     public int getNumeroJoueurActuel(){
         return joueurActuel;
     }
@@ -138,6 +147,11 @@ public class Jeu
     public CollectionJoueur getCollectionJoueur()
     {
         return collectionJoueur;
+    }
+    
+    public boolean getFinTour()
+    {
+        return finTour;
     }
 
     public void setFinTour(boolean finTour)

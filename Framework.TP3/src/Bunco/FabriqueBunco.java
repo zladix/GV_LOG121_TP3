@@ -6,10 +6,15 @@ import Framework.Des.Jeu;
 
 /**
  * Created by Utilisateur on 2016-02-18.
+ * Fabrique qui va initialiser la partie de bunco
  */
 public class FabriqueBunco extends Fabrique
 {
-    FabriqueBunco(int nbJoueur){super(nbJoueur);}
+    /**
+     * Constructeur de la fabrique
+     * @param nbJoueur nombre de joueurs qui vont jouer au bunco
+     */
+    public FabriqueBunco(int nbJoueur){super(nbJoueur);}
     @Override
     public void genererJeu() {
         super.genererJeu();
@@ -19,6 +24,9 @@ public class FabriqueBunco extends Fabrique
         manche.setNbTour(1);
     }
 
+    /* (non-Javadoc)
+     * @see Framework.Des.Fabrique#genererDe()
+     */
     @Override
     public void genererDe() {
         super.genererDe();
@@ -27,6 +35,9 @@ public class FabriqueBunco extends Fabrique
         manche.setDes(3,6);
     }
 
+    /* (non-Javadoc)
+     * @see Framework.Des.Fabrique#genererJoueur()
+     */
     @Override
     public void genererJoueur() {
         super.genererJoueur();

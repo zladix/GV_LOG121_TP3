@@ -3,7 +3,7 @@ package Framework.Des;
 import java.util.Iterator;
 
 /**
- * Created by pc on 2016-03-03.
+ *  Classe qui va gérer l'itérateur de joueurs
  */
 public class JoueurIterateur implements Iterator<Joueur> {
 
@@ -15,6 +15,9 @@ public class JoueurIterateur implements Iterator<Joueur> {
         this.cJoueur = cJoueur;
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Iterator#hasNext()
+     */
     @Override
     public boolean hasNext() {
 
@@ -27,6 +30,9 @@ public class JoueurIterateur implements Iterator<Joueur> {
         }
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Iterator#next()
+     */
     @Override
     public Joueur next() {
         Joueur unJoueur = cJoueur.get(position);
@@ -34,6 +40,9 @@ public class JoueurIterateur implements Iterator<Joueur> {
         return unJoueur;
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Iterator#remove()
+     */
     @Override
     public void remove(){
     }

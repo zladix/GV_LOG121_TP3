@@ -7,11 +7,15 @@ import Framework.Des.Jeu;
 import java.util.Iterator;
 
 /**
- * Created by Utilisateur on 2016-02-18.
+ * Stratégie qui implémente le jeux de dé du bunco
+ *
  */
 public class Bunco implements IStrategie {
 
 
+    /* (non-Javadoc)
+     * @see Framework.Des.IStrategie#calculerScoreTour(Framework.Des.Jeu)
+     */
     @Override
     public int calculerScoreTour(Jeu j) {
 
@@ -22,7 +26,7 @@ public class Bunco implements IStrategie {
 
         Iterator<De> it =  j.getCollectionDes().creerIterateur();
 
-        //boucle qui calcule le nombre de dÃ©s ayant la mÃªme face que le tour
+        //boucle qui calcule le nombre de dés ayant la même face que le tour
         while(it.hasNext())
         {
             if(j.getCollectionDes().get(position).getFace() == j.getNbTour())
@@ -34,10 +38,10 @@ public class Bunco implements IStrategie {
             it.next();
         }
 
-        //si les 3 dÃ©es sont pareil(doit Ãªtre triÃ© en ordre croissant)
+        //si les 3 dÃ©es sont pareil(doit être trié en ordre croissant)
         if(j.getCollectionDes().get(0).getFace() == j.getCollectionDes().get(2).getFace())
         {
-            //si le score est de 3 Ã§a veut dire que c'est un bonco Ã  cause du point gagnÃ© par dÃ© pareil au tour
+            //si le score est de 3 Ã§a veut dire que c'est un bonco à  cause du point gagné par dé pareil au tour
             if(score == 3)
             {
                 score = 21;
@@ -60,6 +64,9 @@ public class Bunco implements IStrategie {
         return score;
     }
 
+    /* (non-Javadoc)
+     * @see Framework.Des.IStrategie#calculerLeVainqueur(Framework.Des.Jeu)
+     */
     @Override
     public void calculerLeVainqueur(Jeu j)
     {

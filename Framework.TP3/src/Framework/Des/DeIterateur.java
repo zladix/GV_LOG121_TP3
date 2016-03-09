@@ -3,19 +3,25 @@ package Framework.Des;
 import java.util.Iterator;
 
 /**
- * Created by pc on 2016-03-03.
+ * Classe qui va gérer l'itérateur de dés
  */
 public class DeIterateur  implements Iterator<De> {
 
     private CollectionDes cDe;
     private int position = 0;
 
+    /**
+     * Constructeur de l'itérateur
+     * @param cDe Collection de dés qui va être itéré
+     */
     public DeIterateur(CollectionDes cDe)
     {
         this.cDe = cDe;
-
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Iterator#hasNext()
+     */
     @Override
     public boolean hasNext() {
 
@@ -28,6 +34,9 @@ public class DeIterateur  implements Iterator<De> {
         }
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Iterator#next()
+     */
     @Override
     public De next() {
         De unDe = cDe.get(position);
@@ -35,6 +44,9 @@ public class DeIterateur  implements Iterator<De> {
         return unDe;
     }
 
+    /* (non-Javadoc)
+     * @see java.util.Iterator#remove()
+     */
     @Override
     public void remove(){}
 }

@@ -23,14 +23,14 @@ public abstract class Fabrique
     }
 
     /**
-     * Initialise la classe jeu(nom de la stratÃ©gie du jeu).
-     * Initialise le nombre de tour max Ã  l'aide de jeu.setNbTourPartieMax.
-     * Initialise le premier tour Ã  l'aide de jeu.setNbTour.
+     * Initialise la classe jeu(nom de la stratégie du jeu).
+     * Initialise le nombre de tour max à  l'aide de jeu.setNbTourPartieMax.
+     * Initialise le premier tour à  l'aide de jeu.setNbTour.
      */
     protected void genererJeu() {}
 
     /**
-     * Initialise le nombre de dÃ©s et le nombre de faces de chaque dÃ©s avec jeu.setDes(nbDes,NbFace).
+     * Initialise le nombre de dés et le nombre de faces de chaque dés avec jeu.setDes(nbDes,NbFace).
      */
     protected void genererDe() {}
 
@@ -39,6 +39,9 @@ public abstract class Fabrique
      */
     protected void genererJoueur() {}
 
+    /**
+     * @return Le jeu qui est joué
+     */
     public final Jeu getJeu()
     {
         return manche;

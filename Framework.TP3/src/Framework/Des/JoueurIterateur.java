@@ -1,3 +1,15 @@
+/******************************************************
+Cours:  LOG121
+Projet: Framework.TP3
+Nom du fichier: JoueurIterateur.java
+Date créé: 2016-03-03
+*******************************************************
+Historique des modifications
+*******************************************************
+*@author Vincent Leclerc(LECV07069406)
+*@author Gabriel Déry(DERG30049401)
+2016-03-03 Version initiale
+*******************************************************/  
 package Framework.Des;
 
 import java.util.Iterator;

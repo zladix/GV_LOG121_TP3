@@ -1,3 +1,15 @@
+/******************************************************
+Cours:  LOG121
+Projet: Framework.TP3
+Nom du fichier: Jeu.java
+Date crÈÈ: 2016-02-18
+*******************************************************
+Historique des modifications
+*******************************************************
+*@author Vincent Leclerc(LECV07069406)
+*@author Gabriel DÈry(DERG30049401)
+2016-02-18 Version initiale
+*******************************************************/  
 package Framework.Des;
 import java.util.Random;
 import java.util.Iterator;
@@ -11,8 +23,8 @@ public class Jeu
     private int nbFaces = 1;
     private int scoreTourJoueur = 0;
     private int joueurActuel = 1;
-    private int nbTour;
-    private int nbTourPartieMax;
+    private int nbTour = 1;
+    private int nbTourPartieMax = 1;
     private boolean finTour = false;
 
     private CollectionDes collectionDes;
@@ -56,42 +68,37 @@ public class Jeu
     public void setNbTourPartieMax(int maxTour){
         nbTourPartieMax = maxTour;
     }
-
+    
     /**
-     * G√©n√®re la liste de d√©s pour le jeu.
-     * @param nbDes : nombre de dÈs nÈcessaire.
-     * @param nbFaces : nombre de face pour les dÈs.
+     * Retourne le nombre de tour max dans la partie.
+     * @return
      */
-    public void setDes(int nbDes,int nbFaces){
-        this.nbFaces = nbFaces;
-        collectionDes = new CollectionDes();
-
-        //g√©n√®re la liste contenant les d√©s
-        for (int i = 1 ; i <= nbDes;i++)
-        {
-            collectionDes.ajouterDe(new De());
-        }
-        itDe = collectionDes.creerIterateur();
-    }
-
-    /**
-     * G√©n√®re la liste de joueur pour le jeu.
-     * @param nbJoueur : nombre de joueur.
-     * @param scoreBase : score de base lors du d√©but du jeu pour chaque joueur.
-     */
-    public void setNbJoueur(int nbJoueur,int scoreBase)
+    public int getNbTourPartieMax()
     {
-        collectionJoueur = new CollectionJoueur();
-        for(int i = 1; i<= nbJoueur;i++)
-        {
-            collectionJoueur.ajouterJoueur(new Joueur(i,scoreBase));
-        }
-       itJoueur =  collectionJoueur.creerIterateur();
+    	return nbTourPartieMax;
     }
 
+    public int getNumeroJoueurActuel(){
+        return joueurActuel;
+    }
+    
+    public boolean getFinTour()
+    {
+        return finTour;
+    }
+
+    public void setFinTour(boolean finTour)
+    {
+        this.finTour = finTour;
+    }
+    
+    public int getScoreJoueurActuel(int joueur) {
+        return collectionJoueur.get(joueur).getScoreJoueur();
+    }
+    
     /**
      * @return: num√©ro du joueur vainqueur.
-     * Return -1: La partie n'est pas termin√©e , donc pas de gagnant.
+     * Return -1: La partie n'est pas terminee , donc pas de gagnant.
      */
     public int getVainqueur(){
         int joueurGagnant = 0;
@@ -133,10 +140,41 @@ public class Jeu
             return -1;
         }
     }
+    
+    public int getNombreFace()
+    {
+    	return nbFaces;
+    }
+    
+    /**
+     * GÈnËre la liste de dÈs pour le jeu.
+     * @param nbDes : nombre de dÈs nÈcessaire.
+     * @param nbFaces : nombre de face pour les dÈs.
+     */
+    public void setDes(int nbDes,int nbFaces){
+        this.nbFaces = nbFaces;
+        collectionDes = new CollectionDes();
 
+        for (int i = 1 ; i <= nbDes;i++)
+        {
+            collectionDes.ajouterDe(new De());
+        }
+        itDe = collectionDes.creerIterateur();
+    }
 
-    public int getNumeroJoueurActuel(){
-        return joueurActuel;
+    /**
+     * GÈnËre la liste de joueur pour le jeu.
+     * @param nbJoueur : nombre de joueur.
+     * @param scoreBase : score de base lors du d√©but du jeu pour chaque joueur.
+     */
+    public void setNbJoueur(int nbJoueur,int scoreBase)
+    {
+        collectionJoueur = new CollectionJoueur();
+        for(int i = 1; i<= nbJoueur;i++)
+        {
+            collectionJoueur.ajouterJoueur(new Joueur(i,scoreBase));
+        }
+       itJoueur =  collectionJoueur.creerIterateur();
     }
 
     public CollectionDes getCollectionDes()
@@ -147,20 +185,6 @@ public class Jeu
     public CollectionJoueur getCollectionJoueur()
     {
         return collectionJoueur;
-    }
-    
-    public boolean getFinTour()
-    {
-        return finTour;
-    }
-
-    public void setFinTour(boolean finTour)
-    {
-        this.finTour = finTour;
-    }
-
-    public int getScoreJoueurActuel(int joueur) {
-        return collectionJoueur.get(joueur).getScoreJoueur();
     }
 
     /**
@@ -198,7 +222,6 @@ public class Jeu
                     return 1;
                 } else {
                     //fin de tour
-                    //itJoueur.next().setScoreJoueur(scoreTourJoueur);
                     scoreTourJoueur = 0;
                     nbTour = nbTour + 1;
                     joueurActuel = 1;
@@ -210,7 +233,7 @@ public class Jeu
     }
 
     /**
-     * G√©n√®re des faces al√©atoires pour les d√©s.
+     * GÈnËre des faces alÈatoires pour les dÈs.
      */
     public void genererDe()
     {

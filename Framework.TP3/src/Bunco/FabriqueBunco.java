@@ -1,3 +1,15 @@
+/******************************************************
+Cours:  LOG121
+Projet: Framework.TP3
+Nom du fichier: FabriqueBunco.java
+Date créé: 2016-02-18
+*******************************************************
+Historique des modifications
+*******************************************************
+*@author Vincent Leclerc(LECV07069406)
+*@author Gabriel Déry(DERG30049401)
+2016-02-18 Version initiale
+*******************************************************/  
 package Bunco;
 
 import Bunco.Bunco;

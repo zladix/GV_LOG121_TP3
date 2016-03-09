@@ -1,3 +1,15 @@
+/******************************************************
+Cours:  LOG121
+Projet: Framework.TP3
+Nom du fichier: BuncoTest.java
+Date créé: 2016-03-07
+*******************************************************
+Historique des modifications
+*******************************************************
+*@author Vincent Leclerc(LECV07069406)
+*@author Gabriel Déry(DERG30049401)
+2016-03-07 Version initiale
+*******************************************************/ 
 package Test;
 
 import static org.junit.Assert.*;

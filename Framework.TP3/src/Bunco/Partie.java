@@ -12,9 +12,12 @@ Historique des modifications
 *******************************************************/  
 package Bunco;
 import Bunco.FabriqueBunco;
+import Framework.Des.CollectionDes;
+import Framework.Des.De;
 import Framework.Des.Fabrique;
 import Framework.Des.Jeu;
 
+import java.util.Iterator;
 import java.util.Scanner;
 
 /**
@@ -51,6 +54,15 @@ public class Partie
                 sc.nextLine();
             }
             tour = Partie.jouerTour();
+            CollectionDes collectionDes = Partie.getCollectionDes();
+            
+            Iterator<De> itDe = collectionDes.creerIterateur();
+            while(itDe.hasNext())
+            {
+                System.out.print(itDe.next().getFace() + " ");
+            }
+            System.out.println(" ");
+            
             switch (tour)
             {
                 case 0:System.out.println("Le joueur "+Partie.getNumeroJoueurActuel()+" n'a pas terminé son tour, il doit relancé les dés\n");break;

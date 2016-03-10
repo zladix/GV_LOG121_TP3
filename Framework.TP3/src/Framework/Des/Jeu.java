@@ -124,14 +124,11 @@ public class Jeu
      */
     public int getScoreVainqueur(){
         int scoreGagnant = 0;
-        int nbjoueurTest = 0;
         if(nbTour == nbTourPartieMax+1)
         {
             itJoueur = collectionJoueur.creerIterateur();
             while(itJoueur.hasNext()){
-                nbjoueurTest++;
                 scoreGagnant = itJoueur.next().getScoreJoueur();
-                System.out.println("GetScoreVainqueur: Joueur : "+nbjoueurTest+ " score : "+scoreGagnant+"\n");
             }
             return scoreGagnant;
         }

@@ -162,7 +162,7 @@ public class JeuTest {
 		 
 		 partie.setNbTour(7);
 		 
-		 retour = partie.getVainqueur();
+		 retour = partie.getScoreVainqueur();
 		 assertTrue(retour == 0);
 	 }
 	 
@@ -297,9 +297,9 @@ public class JeuTest {
 		 baseJeu = new FabriqueBunco(2);
 		 partie = baseJeu.getJeu();
 		 
-		 partie.setNbJoueur(1, 0);
+		 partie.setNbJoueur(2, 0);
 		 retour = partie.jouerTour();
-		 while(retour == 0)
+		 while(retour == 0 || retour == 1)
 		 {
 			 retour = partie.jouerTour();
 		 }

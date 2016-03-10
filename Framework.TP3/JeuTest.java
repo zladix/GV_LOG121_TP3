@@ -177,8 +177,6 @@ public class JeuTest {
 		 while(itDe.hasNext())
 		    {
 		        nombreDes++;
-		        
-		        itDe.next();
 		    }
 		 assertTrue(nombreDes == 3);
 	 }
@@ -194,7 +192,6 @@ public class JeuTest {
 		 while(itJoueur.hasNext())
 		    {
 		        nombreJoueur++;
-		        itJoueur.next();
 		    }
 		 assertTrue(nombreJoueur == 2);
 	 }
@@ -217,10 +214,9 @@ public class JeuTest {
 		 
 		 Iterator<De> itDe = partie.getCollectionDes().creerIterateur();
 		 while(itDe.hasNext())
-		 {
+		    {
 		        nombreDes++;
-		        itDe.next();
-		  }
+		    }
 		 assertTrue(nombreDes == 2);
 	 }
 	 
@@ -235,7 +231,6 @@ public class JeuTest {
 		 while(itJoueur.hasNext())
 		 {
 			 nombreJoueur++;
-			 itJoueur.next();
 		 }
 		assertTrue(nombreJoueur == 3);
 	 }

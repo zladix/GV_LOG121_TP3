@@ -23,7 +23,13 @@ import Framework.Des.De;
 import Framework.Des.Fabrique;
 import Framework.Des.IStrategie;
 import Framework.Des.Jeu;
+import Framework.Des.Joueur;
 
+/**
+ * Classe qui permet de tester les méthode de la classe Bunco
+ * @author pc
+ *
+ */
 public class BuncoTest {
 
 	 Fabrique baseJeu;
@@ -32,7 +38,7 @@ public class BuncoTest {
 	 int score = 0;
 
 	@Test
-	public void obtenirBunco() {
+	public void obtenirBuncoTest() {
 		
 		baseJeu = new FabriqueBunco(2);
 	    j = baseJeu.getJeu();
@@ -58,7 +64,7 @@ public class BuncoTest {
 	}
 	
 	@Test
-	public void obtenirMiniBunco()
+	public void obtenirMiniBuncoTest()
 	{
 		
 		baseJeu = new FabriqueBunco(2);
@@ -85,9 +91,8 @@ public class BuncoTest {
 		
 	}
 	
-	
 	@Test
-	public void obtenir1DePareilTour()
+	public void obtenir1DePareilTourTest()
 	{
 		baseJeu = new FabriqueBunco(2);
 	    j = baseJeu.getJeu();
@@ -113,7 +118,7 @@ public class BuncoTest {
 	}
 	
 	@Test
-	public void obtenir2DePareilTour()
+	public void obtenir2DePareilTourTest()
 	{
 		baseJeu = new FabriqueBunco(2);
 	    j = baseJeu.getJeu();
@@ -139,7 +144,7 @@ public class BuncoTest {
 	}
 	
 	@Test
-	public void obtenirAuncunDePareilTour()
+	public void obtenirAuncunDePareilTourTest()
 	{
 		baseJeu = new FabriqueBunco(2);
 	    j = baseJeu.getJeu();
@@ -163,5 +168,41 @@ public class BuncoTest {
 	    assertTrue(score == 0);
 	    assertTrue(j.getFinTour() == true);
 	}
+	
+	@Test
+	public void calculerScoreFinPartieTest()
+	{
+		baseJeu = new FabriqueBunco(2);
+	    j = baseJeu.getJeu();
+	    
+	    int tabScore[] = {20,10,50,3};
+	    int tabScoreTrie[] = {50,20,10,3};
+	    int i = 0;
+		
+	    j.setNbJoueur(4, 0);
+	    
+		Iterator<Joueur> itJoueur = j.getCollectionJoueur().creerIterateur();
+		
+		while(itJoueur.hasNext())
+	    {
+	        itJoueur.next().setScoreJoueur(tabScore[i]);
+	        i++;
+	    }
+		
+		b.calculerLeVainqueur(j);
+		
+		itJoueur = j.getCollectionJoueur().creerIterateur();
+		i = 0;
+		
+		while(itJoueur.hasNext())
+	    {
+	        assertTrue(itJoueur.next().getScoreJoueur() == tabScoreTrie[i]);
+	        i++;
+	    }
+		
+		
+	}
+	
+	
 
 }

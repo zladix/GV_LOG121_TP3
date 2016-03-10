@@ -20,8 +20,9 @@ public class De implements  Comparable<De>
 {
     private int face;
 
-    De() {
+    public De() {
     }
+    
 
     /**
      * @return la face du dé

@@ -24,6 +24,12 @@ import Framework.Des.Fabrique;
 import Framework.Des.Joueur;
 import Framework.Des.IStrategie;
 
+
+/**
+ * Classe qui permet de tester les méthode de la classe Jeu
+ * @author pc
+ *
+ */
 public class JeuTest {
 	Fabrique baseJeu;
 	 Jeu partie;

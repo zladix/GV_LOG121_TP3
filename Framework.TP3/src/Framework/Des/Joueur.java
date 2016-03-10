@@ -26,7 +26,7 @@ public class Joueur implements Comparable<Joueur>
      * @param numJoueur numéro du joueur dans la partie
      * @param score score obtenu par le joueur
      */
-    Joueur(int numJoueur,int score)
+    public Joueur(int numJoueur,int score)
     {
         numeroJoueur = numJoueur;
         scoreJoueur = score;

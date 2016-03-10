@@ -104,12 +104,8 @@ public class Jeu
         int joueurGagnant = 0;
         if(nbTour == nbTourPartieMax+1)
         {
-            itJoueur = collectionJoueur.creerIterateur();
-            while(itJoueur.hasNext()){
-                joueurGagnant = itJoueur.next().getNumeroJoueur();
-                System.out.println("GetVainqueur: Joueur : "+joueurGagnant+"\n");
-            }
-            return joueurGagnant;
+          
+            return collectionJoueur.get(0).getNumeroJoueur();
 
         }
         else
@@ -123,14 +119,10 @@ public class Jeu
      * Return -1: La partie n'est pas terminÃ©e , donc pas de score gagnant.
      */
     public int getScoreVainqueur(){
-        int scoreGagnant = 0;
+
         if(nbTour == nbTourPartieMax+1)
         {
-            itJoueur = collectionJoueur.creerIterateur();
-            while(itJoueur.hasNext()){
-                scoreGagnant = itJoueur.next().getScoreJoueur();
-            }
-            return scoreGagnant;
+            return collectionJoueur.get(0).getScoreJoueur();
         }
         else
         {
@@ -203,11 +195,23 @@ public class Jeu
         }
         else{
             genererDe();
+        }
+            
+        	Iterator<De> itDe = collectionDes.creerIterateur();
+        	
+        	
+        	  while(itDe.hasNext())
+              {
+                  System.out.print(itDe.next().getFace() + " ");
+              }
+              System.out.println(" ");
+              
+              
             scoreTemp = strategie.calculerScoreTour(this);
             scoreTourJoueur = scoreTourJoueur + scoreTemp;
             if(finTour == false) {
                 //si le joueur n'a pas fini son tour
-                System.out.println("Score avant generation de de suivante dans le mÃªme tour: "+scoreTemp+" \n");
+                finTour = true;
                 return 0;
             }
             else {
@@ -227,7 +231,7 @@ public class Jeu
                 }
             }
         }
-    }
+    
 
     /**
      * Génère des faces aléatoires pour les dés.

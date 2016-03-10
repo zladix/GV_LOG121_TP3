@@ -56,13 +56,6 @@ public class Partie
             tour = Partie.jouerTour();
             CollectionDes collectionDes = Partie.getCollectionDes();
             
-            Iterator<De> itDe = collectionDes.creerIterateur();
-            while(itDe.hasNext())
-            {
-                System.out.print(itDe.next().getFace() + " ");
-            }
-            System.out.println(" ");
-            
             switch (tour)
             {
                 case 0:System.out.println("Le joueur "+Partie.getNumeroJoueurActuel()+" n'a pas terminé son tour, il doit relancé les dés\n");break;

@@ -145,7 +145,7 @@ public class JeuTest {
 		 partie.setNbTour(7);
 		 
 		 retour = partie.getVainqueur();
-		 assertTrue(retour == 2);
+		 assertTrue(retour == 1);
 	 }
 	 
 	 @Test
